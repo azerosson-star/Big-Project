@@ -15,7 +15,7 @@ set CheminRacine=%cd%\%NomProjet%
 :: Sécurité : si le dossier existe déjà
 if exist "%CheminRacine%" (
     echo.
-    echo ⚠️ Le dossier "%NomProjet%" existe deja !
+    echo Le dossier "%NomProjet%" existe deja !
     echo Annulation pour eviter d'ecraser les fichiers.
     pause
     exit /b
@@ -25,17 +25,17 @@ if exist "%CheminRacine%" (
 mkdir "%CheminRacine%"
 
 echo.
-echo 📍 Arborescence creee dans :
+echo Arborescence creee dans :
 echo %CheminRacine%
 echo ==========================================
 echo.
 
 :: Liste des dossiers
-set dossiers=css js images assets docs php php\controller php\controller\action php\controller\classes php\model php\model\api php\model\services php\view php\view\form php\view\general php\view\list sql
+set dossiers=css js assets assets/images assets/icons assets/fonts docs php php\controller php\controller\action php\controller\classes php\model php\model\api php\model\services php\view php\view\form php\view\general php\view\list sql
 
 for %%d in (%dossiers%) do (
     mkdir "%CheminRacine%\%%d"
-    echo 📁 Cree : %%d
+    echo Dossier cree : %%d
 
     :: Création index.php
     if not exist "%CheminRacine%\%%d\index.php" (
@@ -47,7 +47,7 @@ for %%d in (%dossiers%) do (
         echo exit;
         ) > "%CheminRacine%\%%d\index.php"
 
-        echo    └─ 📄 index.php (sécurité)
+        echo  index.php (sécurité)
     )
 )
 
@@ -59,16 +59,16 @@ if not exist "%CheminRacine%\index.php" (
     echo echo '^<h1^>Bienvenue sur %NomProjet% !^</h1^>';
     ) > "%CheminRacine%\index.php"
 
-    echo 📄 Fichier racine cree : index.php
+    echo Fichier racine cree : index.php
 )
 
 if not exist "%CheminRacine%\config.json" (
     type nul > "%CheminRacine%\config.json"
-    echo 📄 Fichier racine cree : config.json
+    echo Fichier racine cree : config.json
 )
 
 echo.
-echo 🎉 Tout est termine avec succes !
+echo Tout est termine avec succes !
 echo Le projet "%NomProjet%" a ete cree.
 echo.
 pause
