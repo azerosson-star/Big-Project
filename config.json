@@ -2,7 +2,7 @@
 "host" : "localhost",
 "login": "root",
 "password": "",
-"database": "bigbdd",
+"nomBase": "bigbdd",
 "port": 3306,
 "typeIcon" : "filled",
 "nav" : {
@@ -11,4 +11,5 @@
     "Message": "",
     "Formulaire": "",
     "Utilisateur": ""
-    }}
+    }
+}
