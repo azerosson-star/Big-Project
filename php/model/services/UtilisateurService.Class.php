@@ -2,9 +2,36 @@
 
 class UtilisateurService
 {
-    public static function select(?array $colonnes, ?array $conditions = null, ?string $orderBy = null, bool $api = false, bool $debug=false)
+    // CORRECTION : On réécrit le select pour interroger la table "users" 
+    // mais instancier des objets "Utilisateur"
+    public static function select(?array $colonnes = null, ?array $conditions = null, ?string $orderBy = null, bool $api = false, bool $debug = false)
     {
-        return DAO::select($colonnes,"users",$conditions,$orderBy,$api,$debug);
+        $bdd = DbConnect::getConnectBase();
+        
+        // Préparation des colonnes
+        $listeColonnes = ($colonnes == null) ? "*" : implode(',', $colonnes);
+        
+        // Requête sur la table "users"
+        $reqString = "SELECT " . $listeColonnes . " FROM users";
+        
+        // Ajout des conditions (grâce à ton helper)
+        $reqString .= conditionsSelect($conditions);
+        $reqString .= ($orderBy == null) ? "" : " ORDER BY " . $orderBy;
+        
+        $requete = $bdd->prepare($reqString);
+        if ($debug) var_dump($requete);
+        $requete->execute();
+        
+        $liste = [];
+        while ($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
+            if ($api) {
+                $liste[] = $donnees;
+            } else {
+                // C'est ICI la magie : on crée bien un "Utilisateur" et non un "users"
+                $liste[] = new Utilisateur($donnees);
+            }
+        }
+        return $liste;
     }
 
     public static function findByLogin($login)
@@ -33,7 +60,6 @@ class UtilisateurService
         return $utilisateur;
     }
 
-    // CORRECTION : Adapté aux champs réels de la table `users`
     static function insert($util)
     {
         $db = DbConnect::getConnectBase();
@@ -48,7 +74,6 @@ class UtilisateurService
         $requete->closeCursor();
     }
 
-    // CORRECTION : Adapté aux champs réels de la table `users`
     static function update($util)
     {
         $db = DbConnect::getConnectBase();
