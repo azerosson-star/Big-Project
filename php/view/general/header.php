@@ -1,14 +1,18 @@
 <?php
 
-
-
-$header=<<<HTML
-<body>
-    <nav>
-        <a href="index.php?page=Accueil" class="td-none">Accueil</a>
-        <a href="index.php?page=Contact" class="td-none">Contact</a>
-        <a href="index.php?page=Inscription" class="td-none">Inscription</a>
-        <a href="index.php?page=Connexion" class="td-none">Connexion</a>
-    </nav>
-HTML;
-echo $header;
+ echo '   <header class="bg-dark p-1">
+        <nav class="flex justify-between align-center container">
+            <h2>ECF</h2>
+            <div class="flex gap-1">';
+            $navInfo = Parametre::getNav();
+foreach ($navInfo as $value) {
+    // On ajoute "?page=" devant la référence pour que le routeur intercepte la demande
+    echo '<a href="?page='.$value->getReference().'" class="td-none nav-icon" >
+    <span class="fas fa-'.$value->getIcon().'"></span>
+    <span class="nav-text ">'.$value->getNom().'</span></a>';
+}
+echo '            </div>
+        </nav>
+    </header>
+    <main class="container">
+';

@@ -5,11 +5,11 @@
 "nomBase": "bigbdd",
 "port": 3306,
 "typeIcon" : "filled",
-"nav" : {
-    "Acceuil": "",
-    "Contact": "",
-    "Message": "",
-    "Formulaire": "",
-    "Utilisateur": ""
-    }
+   "nav" : {
+    "Accueil": {"nom": "Accueil", "reference": "Accueil", "roleRequis": 0},
+    "Contact": {"nom": "Contact", "reference": "Contact", "roleRequis": 0},
+    "Message": {"nom": "Message", "reference": "Message", "roleRequis": 1},
+    "Formulaire": {"nom": "Formulaire", "reference": "Formulaire", "roleRequis": 0},
+    "Utilisateur": {"nom": "Utilisateur", "reference": "UtilisateurList", "roleRequis": 1}
 }
+    }

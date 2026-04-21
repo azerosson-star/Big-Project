@@ -2,9 +2,19 @@
 
 class Role
 {
+
+    /*****************Attributs***************** */
     private $_idRole;
     private $_libelle;
+    private static $_attributes=['idRole',"libelle"];
 
+#region
+    /*****************Accesseurs***************** */
+
+    public static function getAttributes()
+    {
+        return self::$_attributes;
+    }
     public function getLibelle()
     {
         return $this->_libelle;
@@ -26,9 +36,11 @@ class Role
     }
 
     
+    /*****************Constructeur***************** */
+
     public function __construct(array $options = [])
     {
-        if (!empty($options))
+        if (!empty($options)) // empty : renvoi vrai si le tableau est vide
         {
             $this->hydrate($options);
         }
@@ -37,11 +49,15 @@ class Role
     {
         foreach ($data as $key => $value)
         {
-            $methode = "set" . ucfirst($key);
-            if (is_callable([$this, $methode])) {
+            $methode = "set" . ucfirst($key); //ucfirst met la 1ere lettre en majuscule
+            if (is_callable(([$this, $methode]))) // is_callable verifie que la methode existe
+            {
                 $this->$methode($value==""?null:$value);
             }
         }
     }
 
+#finregion
+    /*****************Autres Méthodes***************** */
+    
 }

@@ -1,25 +1,24 @@
 <?php
 
-class NavElement
+class Produit
 {
 
     /*****************Attributs***************** */
-    private $_reference;
-    private $_icon;
+    private $_idProduit;
     private $_nom;
-    private $_roleRequis;
+    private $_description;
 
 #region
     /*****************Accesseurs***************** */
 
-    public function getRoleRequis()
+    public function getDescription()
     {
-        return $this->_roleRequis;
+        return $this->_description;
     }
 
-    public function setRoleRequis($_roleRequis)
+    public function setDescription($_description)
     {
-        $this->_roleRequis = $_roleRequis;
+        $this->_description = $_description;
     }
 
     public function getNom()
@@ -32,24 +31,14 @@ class NavElement
         $this->_nom = $_nom;
     }
 
-    public function getIcon()
+    public function getIdProduit()
     {
-        return $this->_icon;
+        return $this->_idProduit;
     }
 
-    public function setIcon($_icon)
+    public function setIdProduit($_idProduit)
     {
-        $this->_icon = $_icon;
-    }
-
-    public function getReference()
-    {
-        return $this->_reference;
-    }
-
-    public function setReference($_reference)
-    {
-        $this->_reference = $_reference;
+        $this->_idProduit = $_idProduit;
     }
 
     
@@ -69,6 +58,7 @@ class NavElement
             $methode = "set" . ucfirst($key); //ucfirst met la 1ere lettre en majuscule
             if (is_callable(([$this, $methode]))) // is_callable verifie que la methode existe
             {
+                $value=htmlspecialchars($value); // pour eviter les injections HTML
                 $this->$methode($value==""?null:$value);
             }
         }

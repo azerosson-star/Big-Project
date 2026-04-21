@@ -2,6 +2,8 @@
 
 class Parametre
 {
+
+    /*****************Attributs***************** */
     private static $_host;
     private static $_login;
     private static $_password;
@@ -9,6 +11,9 @@ class Parametre
     private static $_port;
     private static $_typeIcon;
     private static $_nav;
+
+#region
+    /*****************Accesseurs***************** */
 
     public static function getNav()
     {
@@ -46,27 +51,35 @@ class Parametre
     }
 
 
+    /*****************Constructeur***************** */
+
     public function __construct(array $options = [])
     {
-        if (!empty($options))
+        if (!empty($options)) // empty : renvoi vrai si le tableau est vide
         {
             $this->hydrate($options);
         }
     }
+    
     public function hydrate($data)
     {
         foreach ($data as $key => $value) {
-            $methode = "set" . ucfirst($key);
-            if (is_callable([$this, $methode]))
+            $methode = "set" . ucfirst($key); //ucfirst met la 1ere lettre en majuscule
+            if (is_callable(([$this, $methode]))) // is_callable verifie que la methode existe
             {
                 $this->$methode($value == "" ? null : $value);
             }
         }
     }
 
+#finregion
+    /*****************Autres Méthodes***************** */
+    
     public static function init()
     {
         if (file_exists("config.json")) {
+            // json_decode => decode en objet
+            // json_decode(...,true) => decode en tableau associatif
             $contenu = json_decode(file_get_contents("config.json"));
             self::$_host = $contenu->host;
             self::$_login = $contenu->login;
@@ -74,11 +87,17 @@ class Parametre
             self::$_nomBase = $contenu->nomBase;
             self::$_port = $contenu->port;
             self::$_typeIcon = $contenu->typeIcon;
+            
             $tabNav = json_decode(json_encode($contenu->nav), true);
-            $tabObj = [];
+            $tabObj = []; // On initialise le tableau proprement
+            
+            // tabNav est un tableau associatif issu du config.json
             foreach ($tabNav as $key => $value) {
-                $tabObj[] = new NavElement(['name' => $key, 'url' => $value]);
+                // $value contient DÉJÀ ["nom" => "...", "reference" => "...", "roleRequis" => ...]
+                // On le passe directement au constructeur
+                $tabObj[] = new NavElement($value);
             }
+            
             self::$_nav = $tabObj;
         }
     }
