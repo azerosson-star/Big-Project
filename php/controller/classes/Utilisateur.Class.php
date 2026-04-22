@@ -51,12 +51,12 @@ class Utilisateur
         $this->_Login = $_Login;
     }
 
-    public function getIdUser()
+    public function getId_user()
     {
         return $this->_iduser;
     }
 
-    public function setIdUser($_iduser)
+    public function setId_user($_iduser)
     {
         $this->_iduser = $_iduser;
     }

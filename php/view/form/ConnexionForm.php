@@ -1,5 +1,5 @@
 <?php
-echo '
+$connexionform= <<<HTML
 <form action="?page=ConnexionAction" method="post">
     <label for="login">Login</label>
     <input type="text" id="login" name="login">
@@ -9,4 +9,5 @@ echo '
     <br/>
     
     <button type="submit">Se connecter</button>
-</form>';
+</form>'
+HTML;

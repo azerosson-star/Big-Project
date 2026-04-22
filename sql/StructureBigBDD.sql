@@ -1,19 +1,21 @@
+
+--PAS FINI
 CREATE DATABASE IF NOT EXISTS bigbdd;
 USE bigbdd;
-DROP TABLE IF EXISTS formulaire;
+DROP TABLE IF EXISTS form;
 
-CREATE TABLE IF NOT EXISTS formulaire (
+CREATE TABLE IF NOT EXISTS form (
     id_form INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     date_form VARCHAR(10),
-    adresse TEXT,
-    importance TEXT
+    adress TEXT,
+    significance TEXT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS message;
 CREATE TABLE IF NOT EXISTS message (
     id_message INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    contenu TEXT,
-    objet TEXT
+    content TEXT,
+    subject TEXT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS photo;
@@ -25,29 +27,31 @@ CREATE TABLE IF NOT EXISTS photo (
     source TEXT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS `role`;
-CREATE TABLE IF NOT EXISTS `role` ( 
+DROP TABLE IF EXISTS role;
+CREATE TABLE IF NOT EXISTS role ( 
     id_role INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    libelle TEXT NOT NULL
+    label TEXT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users (
     id_user INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) NOT NULL,
-    login VARCHAR(100) NOT NULL,
+    forename VARCHAR(50) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
     password TEXT NOT NULL,
-    adresse TEXT NOT NULL,
+    users_adress TEXT NOT NULL,
     tel NUMERIC NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS ville;
-CREATE TABLE IF NOT EXISTS ville (
-    id_ville INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    code_postal NUMERIC,
-    nom TEXT,
+DROP TABLE IF EXISTS town;
+CREATE TABLE IF NOT EXISTS town (
+    id_town INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    postal_code NUMERIC,
+    name TEXT,
     email TEXT,
     tel NUMERIC,
-    adresse TEXT,
-    departement TEXT
+    adress TEXT,
+    county TEXT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+--PAS FINI

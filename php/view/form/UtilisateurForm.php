@@ -16,7 +16,7 @@ switch ($_GET['mode'])
 
 echo '
 <form action="?page=UtilisateurAction&mode='.$_GET['mode'].'" method="post">
-    <input hidden type="text" id="id_user" name="id_user" value="'.$uti->getIdUser().'">
+    <input hidden type="text" id="id_user" name="id_user" value="'.$uti->getId_user().'">
     
     <label for="username">Nom d\'utilisateur</label>
     <input type="text" id="username" name="username" '.$disabled.' value="'.$uti->getUsername().'">

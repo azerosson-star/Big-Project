@@ -13,8 +13,8 @@ foreach ($listeUtilisateurs as $uti) {
     echo '<div></div>'; 
     
     // CORRECTION : getIdUser() au lieu de getIdUtilisateur()
-    echo '<a href="?page=UtilisateurForm&mode=Modifier&id=' . $uti->getIdUser() . '"><my-icon name="edit-' . Parametre::getTypeIcon() . '"></my-icon></a>';
-    echo '<a href="?page=UtilisateurForm&mode=Supprimer&id=' . $uti->getIdUser() . '"><my-icon name="trash-' . Parametre::getTypeIcon() . '"></my-icon></a>';
+    echo '<a href="?page=UtilisateurForm&mode=Modifier&id=' . $uti->getId_user() . '"><my-icon name="edit-' . Parametre::getTypeIcon() . '"></my-icon></a>';
+    echo '<a href="?page=UtilisateurForm&mode=Supprimer&id=' . $uti->getId_user() . '"><my-icon name="trash-' . Parametre::getTypeIcon() . '"></my-icon></a>';
 }
 
 echo '</div>';

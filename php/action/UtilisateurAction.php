@@ -9,7 +9,7 @@ switch ($_GET['mode']) {
         break;
     case 'Supprimer':
         // CORRECTION : getIdUser() au lieu de getIdUtilisateur()
-        UtilisateurService::delete($util->getIdUser());
+        UtilisateurService::delete($util->getId_user());
         break;
     default:
         break;

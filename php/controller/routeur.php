@@ -6,15 +6,14 @@ function chargerPage()
     $listeRoutes["Accueil"] = new Routes(["chemin" => "php/view/general/", "nomFichier" => "Accueil", "roleRequis" => 0]);
     
     // CORRECTION ICI : "php/view/" au lieu de "php/view/list/"
-    $listeRoutes["ProduitList"] = new Routes(["chemin" => "php/view/", "nomFichier" => "ProduitList", "roleRequis" => 1]);
-    $listeRoutes["ProduitForm"] = new Routes(["chemin" => "php/view/form/", "nomFichier" => "ProduitForm", "roleRequis" => 0]);
-    $listeRoutes["ProduitAction"] = new Routes(["chemin" => "php/controller/action/", "nomFichier" => "ProduitAction", "roleRequis" => 1]);
     
     // CORRECTION ICI : "php/view/" au lieu de "php/view/list/"
     $listeRoutes["UtilisateurList"] = new Routes(["chemin" => "php/view/", "nomFichier" => "UtilisateurList", "roleRequis" => 0]);
     $listeRoutes["UtilisateurForm"] = new Routes(["chemin" => "php/view/form/", "nomFichier" => "UtilisateurForm", "roleRequis" => 0]);
     $listeRoutes["UtilisateurAction"] = new Routes(["chemin" => "php/controller/action/", "nomFichier" => "UtilisateurAction", "roleRequis" => 0]);
-    
+    $listeRoutes["Contact"] = new Routes(["chemin" => "php/view/general/", "nomFichier" => "Contact", "roleRequis" => 0]);
+$listeRoutes["Message"] = new Routes(["chemin" => "php/view/general/", "nomFichier" => "Message", "roleRequis" => 1]);
+$listeRoutes["Formulaire"] = new Routes(["chemin" => "php/view/general/", "nomFichier" => "Formulaire", "roleRequis" => 0]);
     // CORRECTION ICI : "php/view/" au lieu de "php/view/list/"
     $listeRoutes["RoleList"] = new Routes(["chemin" => "php/view/", "nomFichier" => "RoleList", "roleRequis" => 1]);
     $listeRoutes["RoleForm"] = new Routes(["chemin" => "php/view/form/", "nomFichier" => "RoleForm", "roleRequis" => 0]);
