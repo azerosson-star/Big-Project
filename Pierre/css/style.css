@@ -1,0 +1,11 @@
+.grid_crud {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 1fr) 0.2fr 0.2fr;
+    column-gap: 1rem;
+}
+
+svg,
+img {
+    width: 2rem;
+    height: 2rem;
+}

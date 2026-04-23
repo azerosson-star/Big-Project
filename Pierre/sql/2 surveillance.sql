@@ -1,0 +1,19 @@
+ALTER TABLE `utilisateur`
+ADD
+	`date_creation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ADD
+	`utilisateur_creator` INT NULL DEFAULT NULL,
+ADD
+	`date_modification` DATETIME on update CURRENT_TIMESTAMP NULL DEFAULT NULL,
+ADD
+	`utilisateur_modif` INT NULL DEFAULT NULL;
+
+ALTER TABLE `poste`
+ADD
+	`date_creation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ADD
+	`utilisateur_creator` INT NULL DEFAULT NULL,
+ADD
+	`date_modification` DATETIME on update CURRENT_TIMESTAMP NULL DEFAULT NULL,
+ADD
+	`utilisateur_modif` INT NULL DEFAULT NULL;
