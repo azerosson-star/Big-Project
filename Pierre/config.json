@@ -1,0 +1,60 @@
+{
+    "nom_projet": "FixVille",
+    "host": "localhost",
+    "port": 3306,
+    "db_name": "FixVille",
+    "login": "root",
+    "pwd": "",
+    "type_icone": "filled",
+    "nav": {
+        "accueil": {
+            "reference": "?page=accueil",
+            "libelle": "Accueil",
+            "icone": "home",
+            "couleur" : "bleu",
+            "role_requis": 0
+        },
+        "poste": {
+            "reference": "?page=poste_list",
+            "libelle": "Produit",
+            "icone": "info",
+            "couleur" : "vert",
+            "role_requis": 0
+        },
+        "utilisateur": {
+            "reference": "?page=utilisateur_list",
+            "libelle": "Utilisateur",
+            "icone": "info",
+            "couleur" : "vert",
+            "role_requis": 0
+        },
+        "contact": {
+            "reference": "?page=contact",
+            "libelle": "Contact",
+            "icone": "phone",
+            "couleur" : "rouge",
+            "role_requis": 1
+        },
+        "test_ajax": {
+            "reference": "?page=test_ajax",
+            "libelle": "Test Ajax",
+            "icone": "phone",
+            "couleur" : "bleu",
+            "role_requis": 0
+        },
+        "connexion": {
+            "reference": "?page=connexion",
+            "libelle": "Connexion",
+            "icone": "eye",
+            "couleur" : "bleu",
+            "role_requis": 0
+        },
+        "deconnexion": {
+            "reference": "?page=action_deconnexion",
+            "libelle": "Deconnexion",
+            "icone": "eye",
+            "couleur" : "rouge",
+            "role_requis": 0
+        }
+    }
+}
