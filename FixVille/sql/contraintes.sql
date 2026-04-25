@@ -3,11 +3,11 @@ ALTER TABLE utilisateur
 
 ALTER TABLE travaux
   ADD CONSTRAINT fk_travaux_ville FOREIGN KEY (id_ville) REFERENCES ville (id_ville) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT fk_poste_poste FOREIGN KEY (id_poste) REFERENCES poste (id_poste) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE poste
   ADD CONSTRAINT fk_poste_ville FOREIGN KEY (id_ville) REFERENCES ville (id_ville) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT fk_poste_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur (id_utilisateur) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT fk_poste_travaux FOREIGN KEY (id_travaux) REFERENCES travaux (id_travaux) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE message
   ADD CONSTRAINT fk_message_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur (id_utilisateur) ON DELETE RESTRICT ON UPDATE RESTRICT;

@@ -37,7 +37,7 @@ class UtilisateurService
     public static function select(?array $conditions = null,bool $debug = false)
     {
         $db      = DbConnect::get_db();
-        $req     = "SELECT * FROM utilisateur ".select_conditions($conditions);
+        $req     = "SELECT * FROM utilisateur ".conditions_select($conditions);
         $requete = $db->prepare($req);
         $requete->execute();
         while ($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {

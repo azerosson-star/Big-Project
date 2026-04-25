@@ -2,46 +2,38 @@
 
 class DbConnect
 {
-
-    /*****************Attributs***************** */
+# attributes ************************
     private static $_db;
 
-#region
-    /*****************Accesseurs***************** */
-
+#endAttributes
+# accessors ************************
     public static function get_db()
     {
         return self::$_db;
     }
 
-    /*****************Constructeur***************** */
-
-    public function __construct(array $options = [])
+#endAccessors
+# constructor ************************
+    public function __construct(array $data = [])
     {
-        if (! empty($options)); // empty : renvoi vrai si le tableau est vide
+        if (! empty($data)); // empty : renvoi vrai si le tableau est vide
         {
-            $this->hydrate($options);
-        }
-    }
-    public function hydrate($data)
-    {
-        foreach ($data as $key => $value) {
-            $methode = "set" . ucfirst($key);      //ucfirst met la 1ere lettre en majuscule
-            if (is_callable(([$this, $methode]))); // is_callable verifie que la methode existe
-            {
-                $this->$methode($value == "" ? null : $value);
+            foreach ($data as $key => $value) {
+                $methode = "set_" . $key;
+                if (is_callable(([$this, $methode]))); // is_callable verifie que la methode existe
+                {
+                    $this->$methode($value == "" ? null : $value);
+                }
             }
         }
     }
-
-#finregion
-    /*****************Autres Méthodes***************** */
-
+#endConstructor
+# methods ************************
     public static function init()
     {
         try {
             $connection_string = "mysql:host=" . Parametres::get_host() . ";dbname=" . Parametres::get_db_name() . ";port=" . Parametres::get_port() . "";
-            self::$_db = new PDO($connection_string, Parametres::get_login(), Parametres::get_pwd());
+            self::$_db         = new PDO($connection_string, Parametres::get_login(), Parametres::get_pwd());
             self::$_db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             self::$_db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
         } catch (Exception $e) {
@@ -49,4 +41,6 @@ class DbConnect
             echo $e->getMessage();
         }
     }
+
+#endMethods
 }

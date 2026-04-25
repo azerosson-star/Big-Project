@@ -17,7 +17,7 @@ function decode($texte)
 *  [nomColonne1 => '1', nomColonne2 => '%abcd%' ] => "WHERE nomColonne1 = 1 AND nomColonne2 LIKE "%abcd%"
 * 	[fullTexte]=>'test'=> "WHERE nomColonne1 like "%test%" OR nomColonne2 LIKE "%test%"
 */
-function select_conditions(?array $conditions = null)
+function conditions_select(?array $conditions = null)
 {
     if ($conditions == null) {
         return "";
