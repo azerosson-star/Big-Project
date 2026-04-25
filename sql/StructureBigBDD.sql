@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 CREATE DATABASE IF NOT EXISTS FixVille;
 USE FixVille;
-=======
->>>>>>> 3d0da33088aec7bc5bf5b376b2bd0ca1b685aed1
 
 -- Suppression des tables dans l'ordre inverse des dépendances pour éviter les erreurs
 DROP TABLE IF EXISTS favori;
@@ -95,11 +92,4 @@ CREATE TABLE IF NOT EXISTS favori (
     id_favori INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     id_utilisateur INTEGER NOT NULL,
     id_poste INTEGER NOT NULL
-<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-=======
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
-
->>>>>>> 3d0da33088aec7bc5bf5b376b2bd0ca1b685aed1

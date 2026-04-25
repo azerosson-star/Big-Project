@@ -22,4 +22,4 @@ ALTER TABLE gerant
 
 ALTER TABLE favori
   ADD CONSTRAINT fk_favori_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur (id_utilisateur) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT fk_favori_poste FOREIGN KEY (id_poste) REFERENCES poste (id_poste) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT fk_favori_poste FOREIGN KEY (id_poste) REFERENCES poste (id_poste) ON DELETE RESTRICT ON UPDATE RESTRICT; 
