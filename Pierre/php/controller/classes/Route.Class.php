@@ -4,7 +4,6 @@ class Route
 {
 # attributes ************************
     private $_chemin;
-    private $_nom_fichier;
     private $_role_requis;
     
 
@@ -46,8 +45,7 @@ class Route
 # constructor ************************
     public function __construct(array $data = [])
     {
-        if (!empty($data)) // empty : renvoi vrai si le tableau est vide
-        {
+        if (!empty($data)){ // empty : renvoi vrai si le tableau est vide
             foreach ($data as $key => $value)
             {
                 $methode = "set_" .$key;

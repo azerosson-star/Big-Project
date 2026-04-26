@@ -21,7 +21,7 @@ class NavElement
     public static function set_new_elt($_new_elt)
     {
         // if (is_callable([$_new_elt, 'get_libelle'])) {
-            self::$_all_elt[$_new_elt->get_libelle()] = $_new_elt;
+        self::$_all_elt[$_new_elt->get_libelle()] = $_new_elt;
         // } else {
         //     self::$_all_elt[] = $_new_elt;
         // }
@@ -86,12 +86,12 @@ class NavElement
 # constructor ************************
     public function __construct(array $data = [])
     {
-        if (! empty($data)); // empty : renvoi vrai si le tableau est vide
-        {
+        if (! empty($data)) {
+            // empty : renvoi vrai si le tableau est vide
             foreach ($data as $key => $value) {
                 $methode = "set_" . $key;
-                if (is_callable(([$this, $methode]))); // is_callable verifie que la methode existe
-                {
+                if (is_callable(([$this, $methode]))) { // is_callable verifie que la methode existe
+
                     $this->$methode($value == "" ? null : $value);
                 }
             }

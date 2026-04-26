@@ -5,20 +5,12 @@
     "db_name": "FixVille",
     "login": "root",
     "pwd": "",
-    "type_icone": "filled",
     "nav": {
         "accueil": {
             "reference": "?page=accueil",
             "libelle": "Accueil",
             "icone": "home",
             "couleur" : "bleu",
-            "role_requis": 0
-        },
-        "poste": {
-            "reference": "?page=poste_list",
-            "libelle": "Produit",
-            "icone": "info",
-            "couleur" : "vert",
             "role_requis": 0
         },
         "utilisateur": {
@@ -35,13 +27,6 @@
             "couleur" : "rouge",
             "role_requis": 1
         },
-        "test_ajax": {
-            "reference": "?page=test_ajax",
-            "libelle": "Test Ajax",
-            "icone": "phone",
-            "couleur" : "bleu",
-            "role_requis": 0
-        },
         "connexion": {
             "reference": "?page=connexion",
             "libelle": "Connexion",
@@ -50,7 +35,7 @@
             "role_requis": 0
         },
         "deconnexion": {
-            "reference": "?page=action_deconnexion",
+            "reference": "?page=action_connexion",
             "libelle": "Deconnexion",
             "icone": "eye",
             "couleur" : "rouge",

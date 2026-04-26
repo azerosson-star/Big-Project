@@ -20,19 +20,10 @@ Parametres::init();
 DbConnect::init();
 
 session_start();
+if($_SESSION==[]){
+    $_SESSION['utilisateur']= new Utilisateur(['id_role'=>'0']);
+}
+// var_dump($_SESSION);
+// session_destroy();
 
-chargerPage();
-
-
-// echo 'par id <br>';
-// var_dump(ObjectService::find_by_attribute('utilisateur','id_utilisateur','int',3));
-// var_dump(ObjectService::find_by_attribute('poste','id_poste','int',3));
-// var_dump(ObjectService::find_by_attribute('role','id_role','int',3));
-// var_dump(ObjectService::find_by_attribute('utilisateur','id_utilisateur','int',3));
-// var_dump(ObjectService::find_by_attribute('poste','id_poste','int',3));
-// var_dump(ObjectService::find_by_attribute('role','id_role','int',3));
-// echo 'par email <br>';
-// var_dump(ObjectService::find_by_attribute('utilisateur','email','str','tata.titi@gmail.com'));
-
-// $condition=['nom'=>'%o%'];
-// var_dump(UtilisateurService::select($condition,true));
+charger_page();

@@ -7,11 +7,44 @@ class Utilisateur
     private $_nom;
     private $_prenom;
     private $_email;
-    private $_pwd;
+    private $_mdp;
+    private $_adresse;
+    private $_tel;
+    private $_date_naissance;
     private $_id_role;
 
 #endAttributes
 # accessors ************************
+
+    public function get_adresse()
+    {
+        return $this->_adresse;
+    }
+
+    public function set_adresse($_adresse)
+    {
+        $this->_adresse = $_adresse;
+    }
+
+    public function get_tel()
+    {
+        return $this->_tel;
+    }
+
+    public function set_tel($_tel)
+    {
+        $this->_tel = $_tel;
+    }
+
+    public function get_date_naissance()
+    {
+        return $this->_date_naissance;
+    }
+
+    public function set_date_naissance($_date_naissance)
+    {
+        $this->_date_naissance = $_date_naissance;
+    }
 
     public function get_id_role()
     {
@@ -53,14 +86,14 @@ class Utilisateur
         $this->_email = $_email;
     }
 
-    public function get_pwd()
+    public function get_mdp()
     {
-        return $this->_pwd;
+        return $this->_mdp;
     }
 
-    public function set_pwd($_pwd)
+    public function set_mdp($_mdp)
     {
-        $this->_pwd = $_pwd;
+        $this->_mdp = hashage($_mdp);
     }
 
     public function get_nom()
@@ -77,8 +110,8 @@ class Utilisateur
 # constructor ************************
     public function __construct(array $data = [])
     {
-        if (! empty($data)); // empty : renvoi vrai si le tableau est vide
-        {
+        if (!empty($data)) {
+            // empty : renvoi vrai si le tableau est vide
             foreach ($data as $key => $value) {
                 $methode = "set_" . $key;
                 if (is_callable([$this, $methode])) { // is_callable verifie que la methode exist
@@ -96,7 +129,6 @@ class Utilisateur
         $props      = $reflection->getProperties();
 
         $names = array_map(fn($prop) => $prop->getName(), $props);
-
         return ($names);
     }
 #endMethods

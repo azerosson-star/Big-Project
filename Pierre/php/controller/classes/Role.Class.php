@@ -5,9 +5,20 @@ class Role
 # attributes ************************
     private $_id_role;
     private $_libelle;
+    private $_niveau_perm;
 
 #endAttributes
 # accessors ************************
+
+    public function get_niveau_perm()
+    {
+        return $this->_niveau_perm;
+    }
+
+    public function set_niveau_perm($_niveau_perm)
+    {
+        $this->_niveau_perm = $_niveau_perm;
+    }
 
     public function get_id_role()
     {
@@ -33,12 +44,13 @@ class Role
 # constructor ************************
     public function __construct(array $data = [])
     {
-        if (! empty($data)); // empty : renvoi vrai si le tableau est vide
-        {
+        if (! empty($data)){
+         // empty : renvoi vrai si le tableau est vide
             foreach ($data as $key => $value) {
                 $methode = "set_" . $key;
-                if (is_callable([$this, $methode])); // is_callable verifie que la methode existe
-                {
+                if (is_callable([$this, $methode])){
+                    // is_callable verifie que la methode existe
+                
                     $value = htmlspecialchars($value);
                     $this->$methode($value == "" ? null : $value);
                 }

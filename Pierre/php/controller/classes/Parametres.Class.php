@@ -9,7 +9,6 @@ class Parametres
 	private static $_login;
 	private static $_pwd;
 	private static $_nav;
-	private static $_type_icone;
 
 	#region
 	static public function get_nom_projet()
@@ -47,10 +46,6 @@ class Parametres
 		return self::$_nav;
 	}
 
-		static public function get_type_icone()
-	{
-		return self::$_type_icone;
-	}
 	#endregion
 	static function init()
 	{
@@ -64,7 +59,6 @@ class Parametres
             self::$_pwd = $contenu->pwd;
             self::$_db_name = $contenu->db_name;
             self::$_port = $contenu->port;
-            self::$_type_icone = $contenu->type_icone;
             $tabNav = json_decode(json_encode($contenu->nav), true);
             // tabNav est un tableau associatif
             foreach ($tabNav as  $value) {

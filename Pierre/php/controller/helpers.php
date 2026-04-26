@@ -1,8 +1,12 @@
 <?php
 
-function decode($texte)
+function hashage($texte)
 {
     return $texte;
+}
+/* @param string si c'est chifré et tableau si c'est en clair*/
+function compare_hash($texte1,$texte2){
+
 }
 
 /* @param array $conditions => null par défaut, attendu un tableau associatif 

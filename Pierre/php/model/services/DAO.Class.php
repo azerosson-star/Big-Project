@@ -24,31 +24,25 @@ class DAO
             } else {
                 $liste_colonnes = implode(',', $colonnes);
             }
-
-            $reqString  = "SELECT " . $liste_colonnes . " FROM " . $table;
-            $where      = conditions_select($conditions);
-            $reqString .= $where;
-            $reqString .= $order_by == null ? "" : " ORDER BY " . $order_by;
-            $requete    = $bdd->prepare($reqString);
+            $req_string  = "SELECT " . $liste_colonnes . " FROM " . $table;
+            $where       = conditions_select($conditions);
+            $req_string .= $where;
+            $req_string .= $order_by == null ? "" : " ORDER BY " . $order_by;
+            $requete     = $bdd->prepare($req_string);
             if ($debug) {
                 var_dump($requete);
             }
             $liste = [];
+            $requete->execute();
             while ($donnees = $requete->fetch(PDO::FETCH_ASSOC)) {
                 if ($api) {
                     $liste[] = $donnees;
                 } else {
                     $liste[] = new $table($donnees);
                 }
-
             }
             return $liste;
         }
-    }
-
-    public static function find_by_id($table, $id)
-    {
-        return DAO::select($table, null, ["id_" . $table => $id]);
     }
 
     public static function insert($obj)
@@ -58,7 +52,7 @@ class DAO
         $liste_valeurs  = '';
         foreach ($table::get_attributs() as $attribut) {
             $liste_colonnes .= substr($attribut, 1) . ',';
-            $liste_valeurs .= ':' . substr($attribut, 1) . ',';
+            $liste_valeurs  .= ':' . substr($attribut, 1) . ',';
         }
         $db      = DbConnect::get_db();
         $req     = 'INSERT INTO ' . $table . ' (' . $liste_colonnes . 'utilisateur_crea) VALUES (' . $liste_valeurs . ':utilisateur_crea)';
@@ -146,6 +140,11 @@ class DAO
         }
         $requete->closeCursor();
         return $reussie;
+    }
+
+    public static function find_by_id($table, $id)
+    {
+        return DAO::select($table, null, ["id_" . $table => $id]);
     }
 
 #endMethods

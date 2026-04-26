@@ -16,12 +16,11 @@ class DbConnect
 # constructor ************************
     public function __construct(array $data = [])
     {
-        if (! empty($data)); // empty : renvoi vrai si le tableau est vide
-        {
+        if (! empty($data)){ // empty : renvoi vrai si le tableau est vide
             foreach ($data as $key => $value) {
                 $methode = "set_" . $key;
-                if (is_callable(([$this, $methode]))); // is_callable verifie que la methode existe
-                {
+                if (is_callable(([$this, $methode]))){ // is_callable verifie que la methode existe
+                
                     $this->$methode($value == "" ? null : $value);
                 }
             }

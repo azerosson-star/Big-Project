@@ -2,9 +2,9 @@
 
 if (isset($_GET['id_utilisateur'])) {
     // cas du modif et supprimer
-    $utilisateur = UtilisateurService::find_by_id($_GET['id_utilisateur']);
+    $utilisateur = DAO::find_by_id('utilisateur',$_GET['id_utilisateur']);
     if ($utilisateur == null) {
-        header("location:index.php?page=utilisateur_list");
+        header("url=?page=utilisateur_list");
     }
 } else {
     $utilisateur = new Utilisateur(); // on crée un objet vide pour eviter les erreurs dans le mode ajout
