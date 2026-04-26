@@ -32,17 +32,19 @@ CREATE TABLE IF NOT EXISTS ville (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS utilisateur (
-    id_utilisateur INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(50) NOT NULL,
-    prenom VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    pwd TEXT NOT NULL,
-    adresse TEXT NOT NULL,
-    tel NUMERIC NOT NULL,
-    date_naissance VARCHAR(10) NOT NULL,
-    date_inscription VARCHAR(10) NOT NULL,
-    date_modification VARCHAR(10) NOT NULL,
-    id_role INTEGER NOT NULL
+    id_utilisateur    INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nom               VARCHAR(50) NOT NULL,
+    prenom            VARCHAR(50) NOT NULL,
+    email             VARCHAR(100) NOT NULL,
+    mdp               TEXT NOT NULL,
+    adresse           TEXT NOT NULL,
+    tel               NUMERIC NOT NULL,
+    date_naissance    VARCHAR(10) NOT NULL,
+    date_inscription  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  
+    date_modification DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP, 
+    utilisateur_crea  INT NULL DEFAULT NULL,                         
+    utilisateur_modif INT NULL DEFAULT NULL,                        
+    id_role           INTEGER NOT NULL                              
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS travaux (

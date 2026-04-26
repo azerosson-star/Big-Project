@@ -1,113 +1,66 @@
 <?php
-
 class Utilisateur
 {
-
-    /*****************Attributs***************** */
-    private $_iduser;
-    private $_Login;
+    private $_id_utilisateur;
+    private $_nom;
+    private $_prenom;
+    private $_email;
+    private $_mdp;
     private $_adresse;
-    private $_idRole;
     private $_tel;
-    private $_username;
-    private $_password;
-    private static $_attributes=['id_user',"login","password","id_role"];
+    private $_date_naissance;
+    private $_id_role;
 
-#region
-    /*****************Accesseurs***************** */
+    private static $_attributes = ['id_utilisateur', 'nom', 'prenom', 'email', 'mdp', 'adresse', 'tel', 'date_naissance', 'id_role'];
 
-    public static function getAttributes()
-    {
-        return self::$_attributes;
-    }
+    public static function getAttributes() { return self::$_attributes; }
 
-    public function getIdRole()
-    {
-        return $this->_idRole;
-    }
+    public function getId_utilisateur() { return $this->_id_utilisateur; }
+    public function setId_utilisateur($_id_utilisateur) { $this->_id_utilisateur = $_id_utilisateur; }
 
-    public function setIdRole($_idRole)
-    {
-        $this->_idRole = $_idRole;
-    }
+    public function getNom() { return $this->_nom; }
+    public function setNom($_nom) { $this->_nom = $_nom; }
 
-    public function getPassword()
-    {
-        return $this->_password;
-    }
+    public function getPrenom() { return $this->_prenom; }
+    public function setPrenom($_prenom) { $this->_prenom = $_prenom; }
 
-    public function setPassword($_password)
-    {
-        $this->_password = $_password;
-    }
+    public function getEmail() { return $this->_email; }
+    public function setEmail($_email) { $this->_email = $_email; }
 
-    public function getLogin()
-    {
-        return $this->_Login;
-    }
+    public function getMdp() { return $this->_mdp; }
+    public function setMdp($_mdp) { $this->_mdp = $_mdp; }
 
-    public function setLogin($_Login)
-    {
-        $this->_Login = $_Login;
-    }
+    public function getAdresse() { return $this->_adresse; }
+    public function setAdresse($_adresse) { $this->_adresse = $_adresse; }
 
-    public function getId_user()
-    {
-        return $this->_iduser;
-    }
+    public function getTel() { return $this->_tel; }
+    public function setTel($_tel) { $this->_tel = $_tel; }
 
-    public function setId_user($_iduser)
-    {
-        $this->_iduser = $_iduser;
-    }
-    public function getAdresse()
-    {
-        return $this->_adresse;
-    }
-    public function setAdresse($_adresse)
-    {
-        $this->_adresse = $_adresse;
-    }
-    public function getTel()
-    {
-        return $this->_tel;
-    
-    }
-    public function setTel($_idtel)
-    {
-        $this->_tel = $_idtel;
-    }
+    public function getDate_naissance() { return $this->_date_naissance; }
+    public function setDate_naissance($_date_naissance) { $this->_date_naissance = $_date_naissance; }
 
-    public function GetUsername()
-    {
-        return $this->_username;
-    }
-    public function setUsername($_username)
-    {
-        $this->_username = $_username;
-    }
-    /*****************Constructeur***************** */
+    public function getId_role() { return $this->_id_role; }
+    public function setId_role($_id_role) { $this->_id_role = $_id_role; }
+
+    // Alias pour conserver la compatibilité avec le reste du code si nécessaire
+    public function getUsername() { return $this->_nom . ' ' . $this->_prenom; }
+    public function getLogin() { return $this->_email; }
+    public function getPassword() { return $this->_mdp; }
 
     public function __construct(array $options = [])
     {
-        if (!empty($options)) // empty : renvoi vrai si le tableau est vide
-        {
+        if (!empty($options)) {
             $this->hydrate($options);
         }
     }
+
     public function hydrate($data)
     {
-        foreach ($data as $key => $value)
-        {
-            $methode = "set" . ucfirst($key); //ucfirst met la 1ere lettre en majuscule
-            if (is_callable(([$this, $methode]))) // is_callable verifie que la methode existe
-            {
-                $this->$methode($value==""?null:$value);
+        foreach ($data as $key => $value) {
+            $methode = "set" . ucfirst($key);
+            if (is_callable([$this, $methode])) {
+                $this->$methode($value == "" ? null : $value);
             }
         }
     }
-
-#finregion
-    /*****************Autres Méthodes***************** */
-    
 }

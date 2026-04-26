@@ -1,9 +1,6 @@
-Objectif A : Faire une simple page HTML avec un bouton en JavaScript qui affiche "Bonjour" dans la console quand on clique dessus. (Valide que le JS marche).
-
-Objectif B : Faire un script PHP (sans interface) qui sait juste faire une multiplication en dur. (Valide la logique de calcul).
-
-Objectif C : Faire en sorte que le clic sur le bouton (JS) déclenche le script PHP et récupère le résultat. (C'est souvent l'étape la plus dure, elle valide la communication Front/Back).
-
-Objectif D : Remplacer les faux prix par un appel réel à l'API de l'INSEE.
-
-objectif C : Ajouter un moyen (api externe ou interne) pour donner une moyenne des couts que l'on peut rencontrer chez un revendeur professionnel dans le cas ou c'est des entreprises qui vont réaliser qui vont realiser ces reparation
+1/faire les pages necessaires acceuil/connexion/inscription
+2/faire les css
+3/faire les js si necessaires
+4/application 1 faire le chat c'est assez simple 
+5/application pour prendres des photos avec le telephones : compliqué / permettre au client de télécharger une image à partir de sa galerie
+5/s'occuper du reste : dossier projet figma etc...
