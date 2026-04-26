@@ -1,5 +1,4 @@
 <?php
-
 $id =  isset($_GET['id']) ? $_GET['id'] : "";  
 $disabled = "";
 switch ($_GET['mode'])
@@ -16,26 +15,26 @@ switch ($_GET['mode'])
 
 echo '
 <form action="?page=UtilisateurAction&mode='.$_GET['mode'].'" method="post">
-    <input hidden type="text" id="id_user" name="id_user" value="'.$uti->getId_user().'">
+    <input hidden type="text" id="id_utilisateur" name="id_utilisateur" value="'.htmlspecialchars((string)$uti->getId_utilisateur()).'">
     
-    <label for="username">Nom d\'utilisateur</label>
-    <input type="text" id="username" name="username" '.$disabled.' value="'.$uti->getUsername().'">
+    <label for="nom">Nom</label>
+    <input type="text" id="nom" name="nom" '.$disabled.' value="'.htmlspecialchars((string)$uti->getNom()).'">
+    <br/>
+
+    <label for="prenom">Prénom</label>
+    <input type="text" id="prenom" name="prenom" '.$disabled.' value="'.htmlspecialchars((string)$uti->getPrenom()).'">
     <br/>
     
-    <label for="password">Mot De Passe</label>
-    <input type="text" id="password" name="password" '.$disabled.' value="'.$uti->getPassword().'">
-    <br/>
-    
-    <label for="login">Email / Login</label>
-    <input type="email" id="login" name="login" '.$disabled.' value="'.$uti->getLogin().'">
+    <label for="email">Email / Login</label>
+    <input type="email" id="email" name="email" '.$disabled.' value="'.htmlspecialchars((string)$uti->getEmail()).'">
     <br/>
     
     <label for="adresse">Adresse</label>
-    <input type="text" id="adresse" name="adresse" '.$disabled.' value="'.$uti->getAdresse().'">
+    <input type="text" id="adresse" name="adresse" '.$disabled.' value="'.htmlspecialchars((string)$uti->getAdresse()).'">
     <br/>
     
     <label for="tel">Téléphone</label>
-    <input type="text" id="tel" name="tel" '.$disabled.' value="'.$uti->getTel().'">
+    <input type="text" id="tel" name="tel" '.$disabled.' value="'.htmlspecialchars((string)$uti->getTel()).'">
     <br/>
     
     <button type="submit">Valider</button>

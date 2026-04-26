@@ -1,20 +1,16 @@
 <?php
-
-// Bouton d'ajout
 echo '<a href="?page=UtilisateurForm&mode=Ajouter"><my-icon name="plus-'.Parametre::getTypeIcon().'"></my-icon></a>';
-
 echo '<div class="grid">';
 
-// Récupération de la liste des utilisateurs depuis la table "users"
 $listeUtilisateurs = UtilisateurService::select(null);
 
 foreach ($listeUtilisateurs as $uti) {
-    echo '<div>' . $uti->getUsername() . '</div>';
-    echo '<div></div>'; 
+    // RÉPARÉ : Prévention des failles XSS et affichage propre
+    echo '<div>' . htmlspecialchars($uti->getNom() . " " . $uti->getPrenom()) . '</div>';
+    echo '<div>' . htmlspecialchars($uti->getEmail()) . '</div>'; 
     
-    // CORRECTION : getIdUser() au lieu de getIdUtilisateur()
-    echo '<a href="?page=UtilisateurForm&mode=Modifier&id=' . $uti->getId_user() . '"><my-icon name="edit-' . Parametre::getTypeIcon() . '"></my-icon></a>';
-    echo '<a href="?page=UtilisateurForm&mode=Supprimer&id=' . $uti->getId_user() . '"><my-icon name="trash-' . Parametre::getTypeIcon() . '"></my-icon></a>';
+    echo '<a href="?page=UtilisateurForm&mode=Modifier&id=' . $uti->getId_utilisateur() . '"><my-icon name="edit-' . Parametre::getTypeIcon() . '"></my-icon></a>';
+    echo '<a href="?page=UtilisateurForm&mode=Supprimer&id=' . $uti->getId_utilisateur() . '"><my-icon name="trash-' . Parametre::getTypeIcon() . '"></my-icon></a>';
 }
 
 echo '</div>';

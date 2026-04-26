@@ -16,9 +16,7 @@ session_start();
 
 // Initialisation
 Parametre::init();
-// DbConnect::init();
+DbConnect::init(); // RÉPARÉ : Décommenté pour activer la base de données
 
 // Lancement de la page via le routeur
 chargerPage();
-
-// var_dump(UtilisateurService::select(null));

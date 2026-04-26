@@ -1,16 +1,17 @@
 <?php
-if (isset($_GET['mode']) && $_GET['mode'] == "deco") session_destroy();
-else {
-    $userSaisi = new Utilisateur($_POST);
-    $userBase = UtilisateurService::findByLogin($_POST['login']);
-    
-    // J'ai ajouté une petite vérification ($userBase != null) au cas où le login tapé n'existe pas
-    if ($userBase && hashage($userSaisi->getPassword()) == $userBase->getPassword()) {
-        // utilisateur connecté
+if (isset($_GET['mode']) && $_GET['mode'] == "deco") {
+    session_destroy();
+    header("location:?page=Accueil");
+    exit;
+} else {
+    $userBase = UtilisateurService::findByLogin($_POST['login']);  
+
+    if ($userBase && password_verify($_POST['password'], $userBase->getMdp())) {  
         $_SESSION['utilisateur'] = $userBase;
-        header("location:?Accueil");
+        header("location:?page=Accueil");
+        exit;
     } else {
-        //retour au formulaire
-        header("location:?ConnexionForm");
+        header("location:?page=ConnexionForm");
+        exit;
     }
 }

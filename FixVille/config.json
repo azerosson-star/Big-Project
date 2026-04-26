@@ -1,15 +1,14 @@
 {
-"host" : "localhost",
-"login": "root",
-"password": "",
-"nomBase": "bigbdd",
-"port": 3306,
-"typeIcon" : "filled",
-   "nav" : {
-    "Accueil": {"nom": "Accueil", "reference": "Accueil", "roleRequis": 0},
-    "Contact": {"nom": "Contact", "reference": "Contact", "roleRequis": 0},
-    "Message": {"nom": "Message", "reference": "Message", "roleRequis": 1},
-    "Formulaire": {"nom": "Formulaire", "reference": "Formulaire", "roleRequis": 0},
-    "Utilisateur": {"nom": "Utilisateur", "reference": "UtilisateurList", "roleRequis": 1}
-}
+    "host" : "localhost",
+    "login": "root",
+    "password": "",
+    "nomBase": "fixville",
+    "port": 3306,
+    "typeIcon" : "filled",
+    "nav" : {
+        "Accueil": {"nom": "Accueil", "reference": "Accueil", "roleRequis": 0},
+        "Contact": {"nom": "Contact", "reference": "Contact", "roleRequis": 0},
+        "Message": {"nom": "Message", "reference": "Message", "roleRequis": 1},
+        "Utilisateur": {"nom": "Utilisateur", "reference": "UtilisateurList", "roleRequis": 1}
     }
+}
