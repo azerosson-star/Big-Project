@@ -20,6 +20,13 @@
             "couleur" : "vert",
             "role_requis": 0
         },
+        "tets_ajax": {
+            "reference": "?page=test_ajax",
+            "libelle": "Test_ajax",
+            "icone": "info",
+            "couleur" : "vert",
+            "role_requis": 0
+        },
         "contact": {
             "reference": "?page=contact",
             "libelle": "Contact",

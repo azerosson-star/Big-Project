@@ -8,6 +8,7 @@ function charger_page()
     $route['utilisateur_list'] = new Route(["chemin" => "view/list/utilisateur_list","role_requis"=>0]);
     $route['connexion'] = new Route(["chemin" => "view/form/connexion","role_requis"=>0]);
     $route['utilisateur_form'] = new Route(["chemin" => "view/form/utilisateur_form","role_requis"=>0]);
+    $route['test_ajax'] = new Route(["chemin" => "view/form/test_ajax","role_requis"=>0]);
     $route['action_connexion'] = new Route(["chemin" => "controller/action/action_connexion","role_requis"=>0]);
     $route['action_utilisateur'] = new Route(["chemin" => "controller/action/action_utilisateur","role_requis"=>0]);
 
