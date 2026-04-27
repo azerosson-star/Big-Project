@@ -144,7 +144,9 @@ class DAO
 
     public static function find_by_id($table, $id)
     {
-        return DAO::select($table, null, ["id_" . $table => $id]);
+        if ($obj = DAO::select($table, null, ["id_" . $table => $id])) {
+            return $obj[0];
+        } else {return false;}
     }
 
 #endMethods

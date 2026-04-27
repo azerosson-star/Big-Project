@@ -2,11 +2,9 @@
 
 function hashage($texte)
 {
+    $texte = sqrt(bin2hex(md5($texte)) . (strlen($texte) + 97));
+    $texte = strlen($texte) % 2 == 0 ? bin2hex($texte) : bin2hex($texte . '9');
     return $texte;
-}
-/* @param string si c'est chifré et tableau si c'est en clair*/
-function compare_hash($texte1,$texte2){
-
 }
 
 /* @param array $conditions => null par défaut, attendu un tableau associatif 
