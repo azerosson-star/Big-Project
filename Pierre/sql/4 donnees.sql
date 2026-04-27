@@ -1,14 +1,13 @@
 -- Insertion de rôles supplémentaires
 INSERT INTO
-    role (libelle)
+    role (id_role,libelle,niveau_perm)
 VALUES
-    ('Superviseur travaux'),
-    ('Agent de maintenance'),
-    ('Administrateur'),
-    ('Utilisateur standard'),
-    ('Modérateur'),
-    ('Invité');
-
+    (1,'Visiteur',1),
+    (2,'Utilisateur standard',2),
+    (3,'Agent de maintenance',3),
+    (4,'Superviseur travaux',4),
+    (5,'Modérateur',4),
+    (6,'Administrateur',6);
 -- Insertion de villes supplémentaires
 INSERT INTO
     ville (ville, code_postal, departement, region)
@@ -90,7 +89,7 @@ VALUES
         '3 rue de la Paix, 35000 Rennes',
         '0701234567',
         '1992-01-20',
-        2
+        6
     ),
     (
         'Roux',
@@ -100,7 +99,7 @@ VALUES
         '45 avenue Jean Jaurès, 38000 Grenoble',
         '0712345678',
         '1987-05-14',
-        5
+        2
     ),
     (
         'Fournier',
@@ -110,7 +109,7 @@ VALUES
         '12 rue de la Liberté, 21000 Dijon',
         '0723456789',
         '1980-11-30',
-        1
+        2
     ),
     (
         'Andre',
@@ -210,7 +209,7 @@ VALUES
         '12 rue de la Loge, 34000 Montpellier',
         '0689012345',
         '1993-04-12',
-        2
+        5
     ),
     (
         'Simon',
@@ -220,7 +219,7 @@ VALUES
         "18 cours de l'Intendance, 33000 Bordeaux",
         '0690123456',
         '1975-08-25',
-        1
+        2
     ),
     (
         'Laurent',

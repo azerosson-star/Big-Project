@@ -147,7 +147,15 @@
 .fa-clock::before {
     content: "\f017";
 }
-
+.fa-user::before {
+    content: "\F007";
+}
+.fa-user-gear::before {
+    content: "\F509";
+}
+.fa-user-slash::before {
+    content: "\F506";
+}
 .fa-user-check::before {
     content: "\f4fc";
 }

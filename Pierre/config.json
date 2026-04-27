@@ -9,44 +9,44 @@
         "accueil": {
             "reference": "?page=accueil",
             "libelle": "Accueil",
-            "icone": "home",
-            "couleur" : "bleu",
-            "role_requis": 0
+            "icone": "house",
+            "couleur": "bleu",
+            "role_requis": 1
         },
-        "utilisateur": {
+        "utilisateurs": {
             "reference": "?page=utilisateur_list",
-            "libelle": "Utilisateur",
-            "icone": "info",
-            "couleur" : "vert",
-            "role_requis": 0
+            "libelle": "Liste Utilisateurs",
+            "icone": "user-gear",
+            "couleur": "vert",
+            "role_requis": 2
         },
-        "tets_ajax": {
+        "test_ajax": {
             "reference": "?page=test_ajax",
             "libelle": "Test_ajax",
             "icone": "info",
-            "couleur" : "vert",
-            "role_requis": 0
+            "couleur": "vert",
+            "role_requis": 2
         },
         "contact": {
             "reference": "?page=contact",
             "libelle": "Contact",
-            "icone": "phone",
-            "couleur" : "rouge",
+            "icone": "contact",
+            "couleur": "rouge",
             "role_requis": 1
         },
         "connexion": {
             "reference": "?page=connexion",
             "libelle": "Connexion",
-            "icone": "eye",
-            "couleur" : "bleu",
-            "role_requis": 0
+            "icone": "user",
+            "couleur": "bleu",
+            "role_requis": 1
         },
         "deconnexion": {
             "reference": "?page=action_connexion",
             "libelle": "Deconnexion",
-            "icone": "eye",
-            "couleur" : "rouge",
-            "role_requis": 0
+            "icone": "user-slash",
+            "couleur": "rouge",
+            "role_requis": 1
         }
     }
 }

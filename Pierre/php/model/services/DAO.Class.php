@@ -146,7 +146,8 @@ class DAO
     {
         if ($obj = DAO::select($table, null, ["id_" . $table => $id])) {
             return $obj[0];
-        } else {return false;}
+        }
+        else {return false;}
     }
 
 #endMethods

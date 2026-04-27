@@ -7,7 +7,6 @@ function ChargerClasse($classe)
     } else {
         require "./php/model/services/" . $classe . ".Class.php";
     }
-
 }
 spl_autoload_register("ChargerClasse");
 
@@ -20,8 +19,8 @@ Parametres::init();
 DbConnect::init();
 
 session_start();
-if($_SESSION==[]){
-    $_SESSION['utilisateur']= new Utilisateur(['id_role'=>'0']);
+if ($_SESSION == []) {
+    $_SESSION['utilisateur'] = new Utilisateur(['id_role' => '1']);
 }
 // var_dump($_SESSION);
 // session_destroy();
