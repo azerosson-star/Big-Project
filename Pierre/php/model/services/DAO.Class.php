@@ -45,6 +45,19 @@ class DAO
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+    
     public static function insert($obj)
     {
         $table          = lcfirst(get_class($obj));
@@ -146,8 +159,7 @@ class DAO
     {
         if ($obj = DAO::select($table, null, ["id_" . $table => $id])) {
             return $obj[0];
-        }
-        else {return false;}
+        } else {return false;}
     }
 
 #endMethods

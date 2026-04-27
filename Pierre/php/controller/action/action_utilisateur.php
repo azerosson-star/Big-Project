@@ -1,5 +1,4 @@
 <?php
-
 $utilisateur_saisi = new Utilisateur($_POST);
 
 switch ($_GET['mode']) {
@@ -16,3 +15,4 @@ switch ($_GET['mode']) {
         break;
 }
 header("url=?page=utilisateur_list");
+
