@@ -1,6 +1,6 @@
 <?php
-
-echo '<!DOCTYPE html>
+$headHtml = <<<HTML
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -13,4 +13,7 @@ echo '<!DOCTYPE html>
     <link rel="stylesheet" href="css/root.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>';
+<body>
+HTML;
+
+echo $headHtml;

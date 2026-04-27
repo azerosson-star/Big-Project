@@ -1,10 +1,7 @@
 USE fixville;
 
-ALTER TABLE `utilisateur`
-ADD `date_crea` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-ADD `utilisateur_crea` INT NULL DEFAULT NULL,
-ADD `date_modif` DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-ADD `utilisateur_modif` INT NULL DEFAULT NULL;
+-- La table utilisateur possède déjà ses champs de surveillance 
+-- (créés directement dans StructureBigBDD.sql). On l'ignore ici.
 
 ALTER TABLE `poste`
 ADD `date_crea` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;

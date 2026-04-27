@@ -38,15 +38,19 @@ class DbConnect
 #finregion
     /*****************Autres Méthodes***************** */
 
-    public static function init()
+  public static function init()
     {
         $connectionString = "mysql:host=" . Parametre::getHost() . ";dbname=" . Parametre::getNomBase() . ";port=" . Parametre::getPort();
         try {
-
-            self::$_connectBase = new PDO($connectionString, Parametre::getLogin(), Parametre::getPassword());
+            self::$_connectBase = new PDO($connectionString, Parametre::getLogin(), Parametre::getPassword(), [
+                // Demande à PDO de lever des exceptions en cas d'erreur SQL (super utile pour débugger)
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
+                // Force les résultats sous forme de tableaux associatifs par défaut
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC 
+            ]);
         } catch (Exception $e) {
-            echo "La base de données n'est pas connectée";
-            echo $e->getMessage();
+            // "die" arrête net le script pour éviter des plantages en cascade
+            die("Erreur de connexion à la base de données : " . $e->getMessage());
         }
     }
 }

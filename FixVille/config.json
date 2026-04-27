@@ -8,7 +8,9 @@
     "nav" : {
         "Accueil": {"nom": "Accueil", "reference": "Accueil", "roleRequis": 0},
         "Contact": {"nom": "Contact", "reference": "Contact", "roleRequis": 0},
-        "Message": {"nom": "Message", "reference": "Message", "roleRequis": 1},
-        "Utilisateur": {"nom": "Utilisateur", "reference": "UtilisateurList", "roleRequis": 1}
+        "Message": {"nom": "Messagerie", "reference": "MessageList", "roleRequis": 1},
+        "Utilisateur": {"nom": "Utilisateur", "reference": "UtilisateurList", "roleRequis": 1},
+        "EspaceMembre": {"nom": "Mon Espace", "reference": "EspaceMembre", "roleRequis": 1}
+        
     }
 }

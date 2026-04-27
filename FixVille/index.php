@@ -1,7 +1,5 @@
 <?php
-// Page d'accueil principale de ton projet
-echo '<h1>Bienvenue sur big project!</h1>';
-
+// 1. D'ABORD on déclare l'Autoloader pour que PHP connaisse les classes
 function ChargerClasse($classe) {
     if (file_exists("./php/controller/classes/" . $classe . ".Class.php"))
         require "./php/controller/classes/" . $classe . ".Class.php";
@@ -9,14 +7,16 @@ function ChargerClasse($classe) {
         require "./php/model/services/" . $classe . ".Class.php";
 }
 spl_autoload_register("ChargerClasse");
+
+// 2. ENSUITE on démarre la session (PHP saura reconstruire l'objet Utilisateur)
+session_start(); 
+
 require "php/controller/routeur.php";
 require "php/controller/helpers.php";
 
-session_start();
-
 // Initialisation
 Parametre::init();
-DbConnect::init(); // RÉPARÉ : Décommenté pour activer la base de données
+DbConnect::init();
 
 // Lancement de la page via le routeur
 chargerPage();

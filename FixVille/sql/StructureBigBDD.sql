@@ -32,19 +32,19 @@ CREATE TABLE IF NOT EXISTS ville (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS utilisateur (
-    id_utilisateur    INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    nom               VARCHAR(50) NOT NULL,
-    prenom            VARCHAR(50) NOT NULL,
-    email             VARCHAR(100) NOT NULL,
-    mdp               TEXT NOT NULL,
-    adresse           TEXT NOT NULL,
-    tel               NUMERIC NOT NULL,
+    id_utilisateur INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    mdp TEXT NOT NULL,
+    adresse TEXT NOT NULL,
+    tel NUMERIC NOT NULL,
     date_naissance    VARCHAR(10) NOT NULL,
     date_inscription  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  
     date_modification DATETIME NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP, 
     utilisateur_crea  INT NULL DEFAULT NULL,                         
     utilisateur_modif INT NULL DEFAULT NULL,                        
-    id_role           INTEGER NOT NULL                              
+    id_role INTEGER NOT NULL                              
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS travaux (
@@ -72,9 +72,11 @@ CREATE TABLE IF NOT EXISTS poste (
 
 CREATE TABLE IF NOT EXISTS message (
     id_message INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    id_utilisateur INTEGER NOT NULL, -- Ajout de la colonne pour la clé étrangère
+    id_expediteur INTEGER NOT NULL,
+    id_destinataire INTEGER NOT NULL, -- Ajout de la colonne pour la clé étrangère
     content TEXT,
-    objet TEXT
+    objet TEXT,
+    date_envoi DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE IF NOT EXISTS notification (

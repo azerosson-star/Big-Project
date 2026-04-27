@@ -8,10 +8,6 @@ function hashage($texte)
 
 /**
  * Appel le getter en fonction du nom de l'attribut (chaine) dans la classe de $obj
- *
- * @param [type] $obj
- * @param [type] $chaine
- * @return void
  */
 function appelGet($obj, $chaine)
 {
@@ -19,50 +15,18 @@ function appelGet($obj, $chaine)
     return call_user_func(array($obj, $methode));
 }
 
-
 /**
  * Crée un select a partir des informations passées en parametre
- *
- * @param integer $valeur => Id de l'element a Selectionner
- * 
- * @param string $table => contient Nom de la table sur laquelle la requête sera effectuée.
- * Exemple : nomTable => "FROM nomTable"
- * 
- * @param array $nomColonnes => contient le noms des champs désirés dans la requête.
- * Exemple :  [nomColonne1,nomColonne2] => "SELECT nomColonne1, nomColonne2"
- * 
- * @param string $attributs => attributs attendu dans la balise select
- * 
- * Exemples : <select class="filtrefiche" data-serie=3 >
- * 
- * @param array|null $condition => null par défaut, attendu un tableau associatif 
- * qui peut prendre plusieurs formes en fonction de la complexité des conditions.
- *
- *  Exemples : tableau associatif
- *  [nomColonne => '1'] => "WHERE nomColonne = 1"
- *  [nomColonne => ['1','3']] => "WHERE nomColonne in (1,3)"
- *  [nomColonne => '%abcd%'] => "WHERE nomColonne like "%abcd%"
- *  [nomColonne => '1->5'] => "WHERE nomColonne BETWEEN 1 and 5 "
- *  Si il y a plusieurs conditions alors :
- *  [nomColonne1 => '1', nomColonne2 => '%abcd%' ] => "WHERE nomColonne1 = 1 AND nomColonne2 LIKE "%abcd%"
- * 
- * @param string|null $orderBy $orderBy => null par défaut, contient un string qui contient les noms de colonnes et le type de tri
- * Exemple :"nomColonne1 , nomColonne2 DESC" => "Order By nomColonne1 , nomColonne2 DESC"
- * 
- * @param string|null $attributId $attributId => null par défaut, contient un string qui contient le name à donner au formulaire s'il est différent de la table
- * 
- * @param string $invite l'invite de la combobox
- * @return void
  */
 function creerSelect(?int $valeur, string $table, array $nomColonnes, ?string $attributs = "", ?array $condition = null, ?string $orderBy = null, ?string $attributId = null, string $invite = "choisissez")
 {
     $nomId = $table::getAttributes()[0];
-    $atrId = ($attributId == null ? $nomId : $attributId); // par defaut l'Id de la table
+    $atrId = ($attributId == null ? $nomId : $attributId); 
 
     $select = '<select id="' . $atrId . '" name="' . $atrId . '"' . $attributs . '>';
     $servic = $table . 'Service';
     $libelle = $nomColonnes;
-    array_push($nomColonnes, $nomId); // ajoute l'id à la liste des colonnes necessaires
+    array_push($nomColonnes, $nomId); 
     $liste = $servic::select($nomColonnes, $condition, $orderBy, false, false);
     if ($valeur == null) {
         $select .= '<option value="" SELECTED>' . $invite . '</option>';
@@ -86,55 +50,87 @@ function creerSelect(?int $valeur, string $table, array $nomColonnes, ?string $a
     $select .= "</select>";
     return $select;
 }
-/* @param array $conditions => null par défaut, attendu un tableau associatif 
-	 * qui peut prendre plusieurs formes en fonction de la complexité des conditions.
-	 *  Exemples : tableau associatif
-	 *  [nomColonne => '1'] => "WHERE nomColonne = 1"
-	 *  [nomColonne => ''] => "WHERE nomColonne is null "
-	 *  [nomColonne => ['1','3']] => "WHERE nomColonne in (1,3)"
-	 *  [nomColonne => '%abcd%'] => "WHERE nomColonne like "%abcd%" "
-	 *  [nomColonne => '1->5'] => "WHERE nomColonne BETWEEN 1 and 5 "
-	 *  Si il y a plusieurs conditions alors :
-	 *  [nomColonne1 => '1', nomColonne2 => '%abcd%' ] => "WHERE nomColonne1 = 1 AND nomColonne2 LIKE "%abcd%"
-	 * 	[fullTexte]=>'test'=> "WHERE nomColonne1 like "%test%" OR nomColonne2 LIKE "%test%"
-	 */
-function conditionsSelect(?array $conditions = null)
-{
-    if ($conditions == null) // tableau condition vide => pas de where
-        return "";
-    $reponse = " WHERE ";
+
+/**
+ * MESSAGES FLASH
+ */
+function setFlash($message, $type = 'success') {
+    $_SESSION['flash'] = [
+        'message' => $message,
+        'type' => $type
+    ];
+}
+
+function displayFlash() {
+    if (isset($_SESSION['flash'])) {
+        $f = $_SESSION['flash'];
+        $bg = ($f['type'] == 'danger') ? '#f44336' : '#4CAF50';
+        echo '<div style="background-color: '.$bg.'; color: white; padding: 15px; margin: 10px 0; border-radius: 5px; text-align: center; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">';
+        echo htmlspecialchars($f['message']);
+        echo '</div>';
+        unset($_SESSION['flash']); 
+    }
+}
+
+/**
+ * GÉNÉRATION / VÉRIFICATION CSRF
+ */
+function getToken() {
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+function checkToken($token) {
+    return (isset($_SESSION['csrf_token']) && $token === $_SESSION['csrf_token']);
+}
+
+/**
+ * CONDITIONS SELECT SÉCURISÉES (Requêtes préparées PDO)
+ * Retourne un tableau ['sql' => "WHERE...", 'params' => [tableau de bind]]
+ */
+function conditionsSelect(?array $conditions = null) {
+    $res = ['sql' => "", 'params' => []];
+    if ($conditions == null) return $res;
+
+    $sql = " WHERE ";
     foreach ($conditions as $key => $value) {
         if ($key != "fullTexte") {
-
-            if (is_array($value)) { // si la valeur est un tableau =>  [nomColonne => ['1','3']] => "WHERE nomColonne in (1,3)"
-                $reponse .= $key . " in (";
-                foreach ($value as $item) { // on parcours les items pour faire le IN
-                    $reponse .= $item . ",";
+            if (is_array($value)) {
+                // Gestion du IN (ex: id in (1,2,3)) - un peu plus complexe avec PDO, on simplifie pour l'exemple
+                $in = "";
+                foreach($value as $i => $item) {
+                    $in .= ":{$key}{$i},";
+                    $res['params']["{$key}{$i}"] = $item;
                 }
-                $reponse  = substr($reponse, 0, -1); // on enleve la dernière virgule
-                $reponse .= ") AND ";
-            } else {            // la valeur est une chaine
-                if ($value == "") { // une chaine vide => [nomColonne => ''] => "WHERE nomColonne is null "
-                    $reponse .= $key . " is null AND ";
-                } else if (strpos($value, "%") !== false) { // contient un % =>[nomColonne => '%abcd%'] => "WHERE nomColonne like "%abcd%" "
-                    $reponse .= $key . " like '" . $value . "' AND ";
-                } else if (strpos($value, "->") !== false) { // contient un -> =>[nomColonne => '1->5'] => "WHERE nomColonne BETWEEN 1 and 5 "
-                    $tab      = explode("->", $value);           // on recupere les valeurs avant et apres le symbole
-                    $reponse .= $key . " between " . $tab[0] . " AND " . $tab[1] . " AND ";
-                } else { // cas classique =>[nomColonne => '1'] => "WHERE nomColonne = 1"
-                    $reponse .= $key . " = '" . $value . "' AND ";
-                }
+                $in = rtrim($in, ",");
+                $sql .= "$key IN ($in) AND ";
+            } elseif ($value == "") {
+                $sql .= "$key IS NULL AND ";
+            } elseif (strpos((string)$value, "%") !== false) {
+                $sql .= "$key LIKE :$key AND ";
+                $res['params'][$key] = $value;
+            } elseif (strpos((string)$value, "->") !== false) {
+                $tab = explode("->", $value);
+                $sql .= "($key BETWEEN :{$key}min AND :{$key}max) AND ";
+                $res['params'][$key.'min'] = $tab[0];
+                $res['params'][$key.'max'] = $tab[1];
+            } else {
+                $sql .= "$key = :$key AND ";
+                $res['params'][$key] = $value;
             }
-            $reponse = substr($reponse, 0, -4);
         } else {
+            // Gestion FullTexte simplifiée (Recherche globale)
             $listeColonne = Utilisateur::getAttributes();
-            foreach ($listeColonne as $colo) {
-
-                $reponse .= $colo . " like '%" . $value . "%' OR "; // [fullTexte]=>'test'=> "WHERE nomColonne1 like "%test%" OR nomColonne2 LIKE "%test%"
+            $sql .= "(";
+            foreach ($listeColonne as $i => $colo) {
+                $sql .= "$colo LIKE :full$i OR ";
+                $res['params']["full$i"] = "%" . $value . "%";
             }
-            $reponse  = substr($reponse, 0, -3); // on enleve le dernier OR
+            $sql = substr($sql, 0, -4) . ") AND ";
         }
     }
-
-    return $reponse;
+    $res['sql'] = substr($sql, 0, -5); // On enlève le dernier " AND "
+    return $res;
 }
