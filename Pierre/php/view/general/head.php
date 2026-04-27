@@ -8,7 +8,6 @@ echo '<!DOCTYPE html>
     <title>Site 1</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/forms.css">
-    <link rel="stylesheet" href="css/postes.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/icon.css">
     <link rel="stylesheet" href="css/root.css">

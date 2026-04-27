@@ -49,7 +49,7 @@ CREATE TABLE
     IF NOT EXISTS travaux (
         id_travaux INTEGER NOT NULL AUTO_INCREMENT,
         id_ville INTEGER NOT NULL,
-        id_poste INTEGER NOT NULL,
+        id_signalement INTEGER NOT NULL,
         cout INTEGER NOT NULL,
         commande VARCHAR(100) NOT NULL,
         date_commande DATE NOT NULL,
@@ -57,14 +57,14 @@ CREATE TABLE
         date_fin DATE NOT NULL,
         PRIMARY KEY (id_travaux),
         KEY fk_travaux_ville (id_ville),
-        KEY fk_travaux_poste (id_poste)
+        KEY fk_travaux_signalement (id_signalement)
     ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
-DROP TABLE IF EXISTS poste;
+DROP TABLE IF EXISTS signalement;
 
 CREATE TABLE
-    IF NOT EXISTS poste (
-        id_poste INTEGER NOT NULL AUTO_INCREMENT,
+    IF NOT EXISTS signalement (
+        id_signalement INTEGER NOT NULL AUTO_INCREMENT,
         id_ville INTEGER NOT NULL,
         id_utilisateur INTEGER NOT NULL,
         adresse TEXT NOT NULL,
@@ -72,10 +72,11 @@ CREATE TABLE
         contenu TEXT NOT NULL,
         importance TEXT NOT NULL,
         nb_upvote INTEGER DEFAULT 0,
+        date_publication DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         source_photo TEXT,
-        PRIMARY KEY (id_poste),
-        KEY fk_poste_ville (id_ville),
-        KEY fk_poste_utilisateur (id_utilisateur)
+        PRIMARY KEY (id_signalement),
+        KEY fk_signalement_ville (id_ville),
+        KEY fk_signalement_utilisateur (id_utilisateur)
     ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS message;
@@ -94,13 +95,14 @@ CREATE TABLE
     IF NOT EXISTS notification (
         id_notification INTEGER NOT NULL AUTO_INCREMENT,
         id_message INTEGER NOT NULL,
-        id_poste INTEGER,
+        id_signalement INTEGER,
         id_utilisateur INTEGER,
         id_ville INTEGER,
         id_travaux INTEGER,
+        date_envoi DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id_notification),
         KEY fk_notification_message (id_message),
-        KEY fk_notification_poste (id_poste),
+        KEY fk_notification_signalement (id_signalement),
         KEY fk_notification_utilisateur (id_utilisateur),
         KEY fk_notification_ville (id_ville),
         KEY fk_notification_travaux (id_travaux)
@@ -124,8 +126,9 @@ CREATE TABLE
     IF NOT EXISTS favori (
         id_favori INTEGER NOT NULL AUTO_INCREMENT,
         id_utilisateur INTEGER NOT NULL,
-        id_poste INTEGER NOT NULL,
+        id_signalement INTEGER NOT NULL,
+        date_ajout DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id_favori),
         KEY fk_favoris_utilisateur (id_utilisateur),
-        KEY fk_favoris_poste (id_poste)
+        KEY fk_favoris_signalement (id_signalement)
     ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;

@@ -43,8 +43,8 @@ INSERT INTO utilisateur (nom, prenom, email, mdp, adresse, tel, date_naissance, 
 ('Simon', 'Antoine', 'antoine.simon@email.com', 'admin2023', "18 cours de l'Intendance, 33000 Bordeaux", '0690123456', '1975-08-25', 1),
 ('Laurent', 'Camille', 'camille.laurent@email.com', 'user2023', '30 rue Nationale, 59000 Lille', '0601234567', '1998-10-03', 2);
 
--- Insertion de postes (signalements de problèmes)
-INSERT INTO poste (id_ville, id_utilisateur, adresse, titre, contenu, importance, nb_upvote, source_photo) VALUES 
+-- Insertion de signalements (signalements de problèmes)
+INSERT INTO signalement (id_ville, id_utilisateur, adresse, titre, contenu, importance, nb_upvote, source_photo) VALUES 
 (1, 1, '10 rue de Rivoli, 75001 Paris', 'Nid-de-poule dangereux', 'Un nid-de-poule de 30cm de diamètre s''est formé au milieu de la chaussée. Risque d''accident pour les cyclistes.', 'Haute', 45, 'nid_poule_rivoli.jpg'),
 (2, 2, '25 rue de la République, 13001 Marseille', 'Lampadaire défectueux', 'Le lampadaire situé devant le numéro 25 ne fonctionne plus depuis une semaine. Le quartier est très sombre la nuit.', 'Moyenne', 23, 'lampadaire_marseille.jpg'),
 (3, 4, '15 rue Victor Hugo, 69001 Lyon', 'Trottoir dégradé', 'Le trottoir est complètement défoncé sur 10 mètres. Impossible de passer en poussette ou en fauteuil roulant.', 'Haute', 78, 'trottoir_lyon.jpg'),
@@ -55,7 +55,7 @@ INSERT INTO poste (id_ville, id_utilisateur, adresse, titre, contenu, importance
 (4, 12, '5 place du Capitole, 31000 Toulouse', 'Éclairage public éteint', 'Tout l''éclairage de la place du Capitole est éteint depuis 3 jours. Problème de sécurité publique.', 'Haute', 67, NULL);
 
 -- Insertion de travaux
-INSERT INTO travaux (id_ville, id_poste, cout, commande, date_commande, date_validation, date_fin) VALUES 
+INSERT INTO travaux (id_ville, id_signalement, cout, commande, date_commande, date_validation, date_fin) VALUES 
 (1, 1, 1500, 'Réparation nid-de-poule rue de Rivoli', '2024-01-15', '2024-01-16', '2024-01-20'),
 (2, 2, 800, 'Remplacement ampoule lampadaire rue de la République', '2024-01-18', '2024-01-19', '2024-01-21'),
 (3, 3, 3500, 'Réfection trottoir rue Victor Hugo', '2024-02-01', '2024-02-03', '2024-02-15'),
@@ -71,7 +71,7 @@ INSERT INTO message (content, objet) VALUES
 ('Votre demande de réparation a été évaluée et jugée prioritaire.', 'Statut de votre demande');
 
 -- Insertion de notifications
-INSERT INTO notification (id_message, id_poste, id_utilisateur, id_ville, id_travaux) VALUES 
+INSERT INTO notification (id_message, id_signalement, id_utilisateur, id_ville, id_travaux) VALUES 
 (1, 1, 1, 1, 1),
 (2, 2, 2, 2, 2),
 (3, NULL, 7, 7, NULL),
@@ -90,7 +90,7 @@ INSERT INTO gerant (id_utilisateur, id_ville) VALUES
 (12, 8);
 
 -- Insertion de favoris
-INSERT INTO favori (id_utilisateur, id_poste) VALUES 
+INSERT INTO favori (id_utilisateur, id_signalement) VALUES 
 (1, 2),
 (1, 3),
 (2, 1),
@@ -102,8 +102,8 @@ INSERT INTO favori (id_utilisateur, id_poste) VALUES
 (12, 6),
 (12, 8);
 
--- Insertion de postes supplémentaires avec différents niveaux d'importance
-INSERT INTO poste (id_ville, id_utilisateur, adresse, titre, contenu, importance, nb_upvote, source_photo) VALUES 
+-- Insertion de signalements supplémentaires avec différents niveaux d'importance
+INSERT INTO signalement (id_ville, id_utilisateur, adresse, titre, contenu, importance, nb_upvote, source_photo) VALUES 
 (8, 14, '3 rue Foch, 34000 Montpellier', 'Panneau de signalisation tordu', 'Le panneau stop à l''intersection est complètement tordu et illisible.', 'Haute', 28, NULL),
 (9, 15, '2 cours Pasteur, 33000 Bordeaux', 'Poubelle publique débordante', 'Les poubelles du cours Pasteur débordent depuis 4 jours. Problème d''hygiène publique.', 'Moyenne', 15, 'poubelle_bordeaux.jpg'),
 (10, 15, '15 rue Solférino, 59000 Lille', 'Plaque d''égout manquante', 'Une plaque d''égout a disparu, laissant un trou béant. Extrêmement dangereux !', 'Urgente', 203, 'plaque_egout_lille.jpg');
