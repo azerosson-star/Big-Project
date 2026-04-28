@@ -5,13 +5,14 @@ $headHtml = <<<HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site 1</title>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/forms.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/icon.css">
-    <link rel="stylesheet" href="css/root.css">
-    <link rel="stylesheet" href="css/style.css">
+    <title>FixVille</title>
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/form.css">
+    <link rel="stylesheet" href="assets/css/root.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/icon.css">
 </head>
 <body>
 HTML;

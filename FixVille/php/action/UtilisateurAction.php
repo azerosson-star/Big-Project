@@ -28,7 +28,7 @@ switch ($mode) {
         exit;
         
     case 'Ajouter':
-        $util->setMdp(password_hash("motdepasse", PASSWORD_BCRYPT)); // Mdp par défaut généré de façon sécurisée
+        $util->setMdp(password_hash("motdepasse", PASSWORD_BCRYPT)); 
         UtilisateurService::insert($util);
         setFlash("Utilisateur créé.", "success");
         header("Location: ?page=UtilisateurList");

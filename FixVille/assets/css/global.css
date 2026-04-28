@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+main.container {
+    margin-top: 2rem;
+    min-height: calc(100vh - 150px);
+}
+
+/* --- CLASSES UTILITAIRES (Utilisées dans vos fichiers PHP) --- */
+.flex { display: flex; }
+.justify-between { justify-content: space-between; }
+.align-center { align-items: center; }
+.gap-1 { gap: 1rem; }
+
+.text-center { text-align: center; }
+.text-danger { color: var(--danger-color) !important; }
+.text-success { color: var(--primary-color) !important; }
+.text-info { color: var(--secondary-color) !important; }
+.td-none { text-decoration: none; }
+
+/* Marges et Paddings */
+.p-1 { padding: 1rem; }
+.p-2 { padding: 2rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mt-1 { margin-top: 1rem; }
+.my-1 { margin-top: 1rem; margin-bottom: 1rem; }
+
+/* Fonds et Bordures */
+.bg-white { background-color: var(--white); }
+.bg-dark { background-color: var(--dark-bg); color: var(--white); }
+.br-1 { border-radius: var(--border-radius); }
+.shadow { box-shadow: var(--box-shadow); }
+.w-100 { width: 100%; }
+
+/* Grilles */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+/* Grille spécifique pour UtilisateurList.php */
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 2fr auto auto;
+    align-items: center;
+    gap: 1rem;
+    background: var(--white);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-top: 1rem;
+}
+.grid > div, .grid > a {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}

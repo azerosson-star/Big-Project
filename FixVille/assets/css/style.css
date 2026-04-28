@@ -1,0 +1,53 @@
+/* --- HEADER & NAVIGATION --- */
+header h2 {
+    color: var(--white);
+    margin: 0;
+}
+
+header nav a.nav-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background var(--transition-speed);
+}
+
+header nav a.nav-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-text {
+    /* La couleur de texte héritera des classes utilitaires (text-danger, etc) ou sera blanche par défaut */
+    color: inherit;
+}
+header nav a.nav-icon:not(.text-danger):not(.text-success):not(.text-info) .nav-text,
+header nav a.nav-icon:not(.text-danger):not(.text-success):not(.text-info) span {
+    color: var(--white);
+}
+
+/* --- BOÎTE DE RÉCEPTION (Messages) --- */
+.message-box {
+    border-left: 5px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-speed);
+}
+
+.message-box:hover {
+    transform: translateX(5px);
+}
+
+.message-box p {
+    color: #555;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+/* Titres H1 / H2 */
+h1.text-center, h2.text-center {
+    color: var(--dark-bg);
+    margin-bottom: 1.5rem;
+}

@@ -1,0 +1,16 @@
+:root {
+    /* Couleurs principales */
+    --primary-color: #4CAF50; /* Vert (succès, boutons principaux) */
+    --secondary-color: #2196F3; /* Bleu (informations) */
+    --danger-color: #f44336; /* Rouge (suppression, déconnexion) */
+    --dark-bg: #2c3e50; /* Bleu nuit pour le header */
+    --light-bg: #f4f7f6; /* Fond général de la page */
+    --white: #ffffff;
+    --text-color: #333333;
+    --border-color: #dddddd;
+
+    /* Espacements et dimensions */
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}

@@ -2,7 +2,7 @@
 $headerTopHtml = <<<HTML
 <header class="bg-dark p-1">
     <nav class="flex justify-between align-center container">
-        <h2>ECF</h2>
+        <h2>FIXVILLE</h2>
         <div class="flex gap-1">
 HTML;
 echo $headerTopHtml;
