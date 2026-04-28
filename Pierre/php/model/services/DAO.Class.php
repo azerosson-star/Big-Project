@@ -45,6 +45,19 @@ class DAO
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+    
     public static function insert($obj)
     {
         $table          = lcfirst(get_class($obj));
